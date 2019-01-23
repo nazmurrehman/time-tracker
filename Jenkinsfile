@@ -11,32 +11,32 @@ pipeline{
                 input('Do you want to proceed?')
             }
         }
-        stage(‘Three’){
+        stage('Three'){
             when{
                 not{
-                    branch “master”
+                    branch "master"
                 }           
             }
             steps{
-                echo “Hello”
+                echo "Hello"
             } 
         }
-        stage(‘Four’){
+        stage('Four'){
             parallel{
-                stage(‘Unit Test’){
+                stage('Unit_Test'){
                     steps{
-                       echo ”Running the unit test.... ”
+                       echo 'Running the unit test.... '
                     } 
                 }
-                stage(‘Integration Test’){
+                stage('Integration_Test'){
                     agent{
                         docker{
                             reuseNode false
-                            image ‘ubuntu’
+                            image 'ubuntu'
                         }
                     }
                     steps{
-                        echo ‘Running the integration test .....’
+                        echo 'Running the integration test .....'
                     }
                 }
             }
